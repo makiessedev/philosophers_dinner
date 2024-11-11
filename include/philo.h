@@ -8,7 +8,7 @@
 // to remove
 #include <stdio.h>
 
-#define PHILO_MAX 200
+#define PHILOS_MAX 200
 
 typedef struct s_args
 {
@@ -22,11 +22,18 @@ typedef struct s_args
 typedef struct s_philos
 {
     int id;
+    t_args  args;
     pthread_t thread;
+    pthread_mutex_t *right_fork;
+    pthread_mutex_t *left_fork;
 } t_philos;
 
-int ft_atoi(char *s);
-int is_valid_input(int ac, char **av);
-int ft_strlen(char *s);
+int     ft_atoi(char *s);
+int     is_valid_input(int ac, char **av);
+int     ft_strlen(char *s);
+void    init_args(char **av, t_args *args);
+void    dinner_init(t_philos *philos, pthread_mutex_t *forks, t_args args);
+void    set_forks(pthread_mutex_t *forks, int philos_number);
+void    set_philos(t_philos *philos, pthread_mutex_t *forks);
 
 #endif
