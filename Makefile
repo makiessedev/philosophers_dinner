@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-SRC = main.c
+SRC = main.c util/atoi.c
 SRC_PATH = $(addprefix ./src/, $(SRC))
 C_FLGAS = -Wall -Werror -Wextra -pthread
 HEADER = ./include/philo.h
