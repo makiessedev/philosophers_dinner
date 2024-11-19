@@ -7,7 +7,7 @@ void    init_args(char **av, t_args *args)
     args->time_to_eat = ft_atoi(av[3]);
     args->time_to_sleep = ft_atoi(av[4]);
     if (av[5])
-        args->time_each_philo_must_eat = atoi(av[5]);
+        args->time_each_philo_must_eat = ft_atoi(av[5]);
     else
         args->time_each_philo_must_eat = -1;
 }

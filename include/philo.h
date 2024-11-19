@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <stdlib.h>
+#include <sys/time.h>
 
 // to remove
 #include <stdio.h>
@@ -21,11 +22,13 @@ typedef struct s_args
 
 typedef struct s_philos
 {
-    int id;
-    t_args  args;
-    pthread_t thread;
+    int             id;
+    t_args          *args;
+    pthread_t       thread;
     pthread_mutex_t *right_fork;
     pthread_mutex_t *left_fork;
+    long long       init_die;
+    int             time_each_philo_must_eat;
 } t_philos;
 
 int     ft_atoi(char *s);
@@ -34,6 +37,8 @@ int     ft_strlen(char *s);
 void    init_args(char **av, t_args *args);
 void    dinner_init(t_philos *philos, pthread_mutex_t *forks, t_args args);
 void    set_forks(pthread_mutex_t *forks, int philos_number);
-void    set_philos(t_philos *philos, pthread_mutex_t *forks);
+void    set_philos(t_philos *philos, pthread_mutex_t *forks, t_args *args);
+void    *simulation(void *philo);
+void    destroy(pthread_mutex_t *forks, int philos_number)
 
 #endif
