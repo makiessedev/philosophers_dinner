@@ -5,6 +5,7 @@ SRC = main.c dinner_init.c util/atoi.c \
 		aux/init_args.c philo/set_forks.c \
 		philo/set_philos.c aux/time.c \
 		philo/destroy.c philo/simulation.c \
+		philo/print_status.c philo/monitor_dies.c
 	
 SRC_PATH = $(addprefix ./src/, $(SRC))
 C_FLGAS = -Wall -Werror -Wextra -pthread

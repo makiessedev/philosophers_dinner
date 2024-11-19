@@ -10,5 +10,6 @@ void    init_args(char **av, t_args *args)
         args->time_each_philo_must_eat = ft_atoi(av[5]);
     else
         args->time_each_philo_must_eat = -1;
+    args->is_philo_died = 0;
     pthread_mutex_init(&args->printf_mutex, NULL);
 }
