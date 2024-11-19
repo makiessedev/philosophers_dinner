@@ -9,15 +9,15 @@
 // to remove
 #include <stdio.h>
 
-#define PHILOS_MAX 200
-
 typedef struct s_args
 {
-    int num_of_philos;
-    int time_to_die;
-    int time_to_eat;
-    int time_to_sleep;
-    int time_each_philo_must_eat;
+    int             num_of_philos;
+    int             time_to_die;
+    int             time_to_eat;
+    int             time_to_sleep;
+    int             time_each_philo_must_eat;
+    _Atomic int     is_philo_died;
+    pthread_mutex_t printf_mutex;
 } t_args;
 
 typedef struct s_philos
