@@ -17,7 +17,7 @@ void set_philos(t_philos *philos, pthread_mutex_t *forks, t_args *args)
         else
             philos[i].right_fork = &forks[i - 1];
         philos[i].args = args;
-        pthread_create(philos[i].thread, NULL, simulation, &philos[i]);
+        pthread_create(&philos[i].thread, NULL, &simulation, &philos[i]);
     }
     i = -1;
     while (++i < num_of_philos)

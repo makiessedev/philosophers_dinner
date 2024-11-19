@@ -35,10 +35,10 @@ int     ft_atoi(char *s);
 int     is_valid_input(int ac, char **av);
 int     ft_strlen(char *s);
 void    init_args(char **av, t_args *args);
-void    dinner_init(t_philos *philos, pthread_mutex_t *forks, t_args args);
+void    *simulation(void *arg);
+void    dinner_init(t_philos *philos, pthread_mutex_t *forks, t_args *args);
+void    destroy(pthread_mutex_t *forks, int philos_number);
 void    set_forks(pthread_mutex_t *forks, int philos_number);
 void    set_philos(t_philos *philos, pthread_mutex_t *forks, t_args *args);
-void    *simulation(void *philo);
-void    destroy(pthread_mutex_t *forks, int philos_number)
 
 #endif

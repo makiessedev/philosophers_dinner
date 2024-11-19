@@ -14,6 +14,6 @@ int main(int ac, char **av)
     philos = malloc(sizeof(t_philos) * args.num_of_philos);
     forks = malloc(sizeof(pthread_mutex_t) * args.num_of_philos);
     
-    dinner_init(&philos, &forks, args);
+    dinner_init(philos, forks, &args);
     return (0);
 }
