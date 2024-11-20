@@ -1,6 +1,6 @@
 #include "./../../include/philo.h"
 
-void monitor_dies(t_philos *philo, int check_time_exceeded)
+void    monitor_dies(t_philos *philo, int check_time_exceeded)
 {
     int i;
 

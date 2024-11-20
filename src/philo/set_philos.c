@@ -5,7 +5,6 @@ void set_philos(t_philos *philos, pthread_mutex_t *forks, t_args *args)
     int i;
     int num_of_philos;
 
-    i = -1;
     num_of_philos = args->num_of_philos;
     i = -1;
     while(++i < num_of_philos)
