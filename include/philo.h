@@ -14,7 +14,8 @@ typedef struct s_args
     int             time_to_eat;
     int             time_to_sleep;
     int             time_each_philo_must_eat;
-    _Atomic int     is_philo_died;
+    int             is_philo_died;
+    pthread_mutex_t is_philo_died_mutex;
     pthread_mutex_t printf_mutex;
 } t_args;
 

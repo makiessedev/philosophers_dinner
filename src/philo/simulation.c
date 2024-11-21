@@ -15,7 +15,7 @@ void *simulation(void *arg)
 
         usleep(philo->args->time_to_die * 1000);
         print_status("died", philo);
-        
+
         pthread_mutex_unlock(philo->left_fork);
         return (NULL);
     }
@@ -43,7 +43,6 @@ void *simulation(void *arg)
 
         if (philo->args->is_philo_died)
             break;
-        
         (philo->time_each_philo_must_eat)--;
     }
     return (NULL);
