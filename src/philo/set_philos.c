@@ -1,6 +1,6 @@
 #include "../../include/philo.h"
 
-void set_philos(t_philos *philos, pthread_mutex_t *forks, t_args *args)
+void    set_philos(t_philos *philos, pthread_mutex_t *forks, t_args *args)
 {
     int i;
     int num_of_philos;

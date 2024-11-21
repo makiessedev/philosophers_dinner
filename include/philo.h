@@ -5,8 +5,6 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <sys/time.h>
-
-// to remove
 #include <stdio.h>
 
 typedef struct s_args

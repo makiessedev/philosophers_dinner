@@ -8,6 +8,18 @@ void *simulation(void *arg)
     philo->init_die = get_time();
     philo->start_simulation = get_time();
 
+    if (philo->args->num_of_philos == 1)
+    {
+        pthread_mutex_lock(philo->left_fork);
+        print_status("has token a fork", philo);
+
+        usleep(philo->args->time_to_die * 1000);
+        print_status("died", philo);
+        
+        pthread_mutex_unlock(philo->left_fork);
+        return (NULL);
+    }
+
     while (philo->args->time_each_philo_must_eat == -1 || philo->time_each_philo_must_eat > 0)
     {
         if (philo->id % 2 == 0)
