@@ -3,9 +3,11 @@
 static int	philosopher_dead(t_philo *philo, size_t time_to_die)
 {
 	pthread_mutex_lock(philo->meal_mutex);
-	if (get_current_time() - philo->last_meal >= time_to_die
-		&& philo->is_eat == 0)
-		return (pthread_mutex_unlock(philo->meal_mutex), 1);
+	if (get_current_time() - philo->last_meal >= time_to_die && philo->is_eat == 0)
+	{
+		pthread_mutex_unlock(philo->meal_mutex);
+		return (1);
+	}
 	pthread_mutex_unlock(philo->meal_mutex);
 	return (0);
 }
