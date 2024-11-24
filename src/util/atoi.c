@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   atoi.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmorais <mmorais@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/24 22:56:34 by mmorais           #+#    #+#             */
+/*   Updated: 2024/11/24 22:56:35 by mmorais          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/philo.h"
 
 int	ft_atoi(char *str)
 {
-	unsigned long long	nb;
-	int					sign;
-	int					i;
+	unsigned long long nb;
+	int sign;
+	int i;
 
 	nb = 0;
 	sign = 1;

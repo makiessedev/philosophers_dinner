@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmorais <mmorais@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/24 22:55:13 by mmorais           #+#    #+#             */
+/*   Updated: 2024/11/24 22:55:14 by mmorais          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <pthread.h>
 # include <stdio.h>
-# include <unistd.h>
 # include <stdlib.h>
 # include <sys/time.h>
-# include <pthread.h>
+# include <unistd.h>
 
 typedef struct s_philo
 {
@@ -41,7 +53,8 @@ int					check_args(char **argv);
 void				destroy_all(t_main *main, pthread_mutex_t *forks);
 void				init_main(t_main *main, t_philo *philos);
 void				init_forks(pthread_mutex_t *forks, int philo_num);
-void				init_philos(t_philo *philos, t_main *main, pthread_mutex_t *forks, char **argv);
+void				init_philos(t_philo *philos, t_main *main,
+						pthread_mutex_t *forks, char **argv);
 void				init_input(t_philo *philo, char **argv);
 int					thread_create(t_main *main, pthread_mutex_t *forks);
 void				*monitor(void *pointer);

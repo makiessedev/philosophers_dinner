@@ -1,21 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine_actions.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmorais <mmorais@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/24 22:36:42 by mmorais           #+#    #+#             */
+/*   Updated: 2024/11/24 22:56:49 by mmorais          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/philo.h"
 
-void think(t_philo *philo)
+void	think(t_philo *philo)
 {
 	print_status("is thinking", philo, philo->philo_id);
 }
 
-void dream(t_philo *philo)
+void	dream(t_philo *philo)
 {
 	print_status("is sleeping", philo, philo->philo_id);
 	ft_usleep(philo->time_to_sleep);
 }
 
-void eat(t_philo *philo)
+void	eat(t_philo *philo)
 {
 	if (philo->philo_id % 2 == 0)
 	{
-
 		pthread_mutex_lock(philo->l_fork);
 		print_status("has taken a fork", philo, philo->philo_id);
 		pthread_mutex_lock(philo->r_fork);
@@ -29,7 +40,7 @@ void eat(t_philo *philo)
 		{
 			ft_usleep(philo->time_to_die);
 			pthread_mutex_unlock(philo->r_fork);
-			return;
+			return ;
 		}
 		pthread_mutex_lock(philo->l_fork);
 		print_status("has taken a fork", philo, philo->philo_id);
