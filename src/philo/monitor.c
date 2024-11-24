@@ -1,17 +1,6 @@
 #include "../../include/philo.h"
 
-void	print_message(char *str, t_philo *philo, int id)
-{
-	size_t	time;
-
-	pthread_mutex_lock(philo->write_mutex);
-	time = get_current_time() - philo->start_time;
-	if (!dead_loop(philo))
-		printf("%zu %d %s\n", time, id, str);
-	pthread_mutex_unlock(philo->write_mutex);
-}
-
-int	philosopher_dead(t_philo *philo, size_t time_to_die)
+static int	philosopher_dead(t_philo *philo, size_t time_to_die)
 {
 	pthread_mutex_lock(philo->meal_mutex);
 	if (get_current_time() - philo->last_meal >= time_to_die
@@ -21,7 +10,7 @@ int	philosopher_dead(t_philo *philo, size_t time_to_die)
 	return (0);
 }
 
-int	check_if_dead(t_philo *philos)
+static int	check_if_dead(t_philo *philos)
 {
 	int	i;
 
@@ -30,7 +19,7 @@ int	check_if_dead(t_philo *philos)
 	{
 		if (philosopher_dead(&philos[i], philos[i].time_to_die))
 		{
-			print_message("died", &philos[i], philos[i].philo_id);
+			print_status("died", &philos[i], philos[i].philo_id);
 			pthread_mutex_lock(philos[0].is_dead_mutex);
 			*philos->is_dead = 1;
 			pthread_mutex_unlock(philos[0].is_dead_mutex);
@@ -41,7 +30,7 @@ int	check_if_dead(t_philo *philos)
 	return (0);
 }
 
-int	check_if_all_ate(t_philo *philos)
+static int	check_if_all_ate(t_philo *philos)
 {
 	int	i;
 	int	finished_eating;

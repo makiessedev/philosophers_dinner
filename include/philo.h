@@ -51,13 +51,10 @@ void				eat(t_philo *philo);
 void				dream(t_philo *philo);
 void				think(t_philo *philo);
 int					dead_loop(t_philo *philo);
-int					check_if_all_ate(t_philo *philos);
-int					check_if_dead(t_philo *philos);
-int					philosopher_dead(t_philo *philo, size_t time_to_die);
 int					ft_atoi(char *str);
 int					ft_usleep(size_t microseconds);
 int					ft_strlen(char *str);
-void				print_message(char *str, t_philo *philo, int id);
+void				print_status(char *str, t_philo *philo, int id);
 size_t				get_current_time(void);
 
 #endif
