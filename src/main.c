@@ -18,5 +18,7 @@ int	main(int argc, char **argv)
 	init_philos(philos, &main, forks, argv);
 	thread_create(&main, forks);
 	destroy_all(&main, forks);
+	free(philos);
+	free(forks);
 	return (0);
 }
