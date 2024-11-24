@@ -22,6 +22,7 @@ void	init_philos(t_philo *philos, t_main *main, pthread_mutex_t *forks, char **a
 		philos[i].philo_id = i + 1;
 		philos[i].is_eat = 0;
 		philos[i].meals_eaten = 0;
+		init_input(&philos[i], argv);
 		philos[i].start_time = get_current_time();
 		philos[i].last_meal = get_current_time();
 		philos[i].print_mutex = &main->print_mutex;
@@ -29,7 +30,6 @@ void	init_philos(t_philo *philos, t_main *main, pthread_mutex_t *forks, char **a
 		philos[i].meal_mutex = &main->meal_mutex;
 		philos[i].is_dead = &main->is_dead_flag;
 		philos[i].l_fork = &forks[i];
-		init_input(&philos[i], argv);
 		if (i == 0)
 			philos[i].r_fork = &forks[philos[i].num_of_philos - 1];
 		else
