@@ -39,7 +39,7 @@ typedef struct s_main
 }					t_main;
 
 int					check_args(char **argv);
-void				destory_all(char *str, t_main *main, pthread_mutex_t *forks);
+void				destroy_all(char *str, t_main *main, pthread_mutex_t *forks);
 void				init_main(t_main *main, t_philo *philos);
 void				init_forks(pthread_mutex_t *forks, int philo_num);
 void				init_philos(t_philo *philos, t_main *main, pthread_mutex_t *forks, char **argv);

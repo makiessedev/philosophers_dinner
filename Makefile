@@ -1,8 +1,10 @@
 NAME = philo
 
-SRC = main.c util/utils.c philo/init.c philo/threads.c \
+SRC = main.c philo/init.c philo/threads.c \
 		philo/monitor.c philo/routine_actions.c \
-		aux/check_args.c aux/print_status.c
+		aux/check_args.c aux/print_status.c \
+		aux/destroy_all.c util/atoi.c util/strlen.c \
+		util/get_current_time.c util/usleep.c
 
 C_FILES = $(addprefix ./src/, $(SRC))
 
