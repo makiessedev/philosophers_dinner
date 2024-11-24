@@ -26,7 +26,7 @@ void	init_philos(t_philo *philos, t_main *main, pthread_mutex_t *forks,
 		init_input(&philos[i], argv);
 		philos[i].start_time = get_current_time();
 		philos[i].last_meal = get_current_time();
-		philos[i].write_mutex = &main->write_mutex;
+		philos[i].print_mutex = &main->print_mutex;
 		philos[i].is_dead_mutex = &main->dead_mutex;
 		philos[i].meal_mutex = &main->meal_mutex;
 		philos[i].is_dead = &main->is_dead_flag;
@@ -55,7 +55,7 @@ void	init_main(t_main *main, t_philo *philos)
 {
 	main->is_dead_flag = 0;
 	main->philos = philos;
-	pthread_mutex_init(&main->write_mutex, NULL);
+	pthread_mutex_init(&main->print_mutex, NULL);
 	pthread_mutex_init(&main->dead_mutex, NULL);
 	pthread_mutex_init(&main->meal_mutex, NULL);
 }

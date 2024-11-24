@@ -24,7 +24,7 @@ typedef struct s_philo
 	int				*is_dead;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	*write_mutex;
+	pthread_mutex_t	*print_mutex;
 	pthread_mutex_t	*is_dead_mutex;
 	pthread_mutex_t	*meal_mutex;
 }					t_philo;
@@ -34,7 +34,7 @@ typedef struct s_main
 	int				is_dead_flag;
 	pthread_mutex_t	dead_mutex;
 	pthread_mutex_t	meal_mutex;
-	pthread_mutex_t	write_mutex;
+	pthread_mutex_t	print_mutex;
 	t_philo			*philos;
 }					t_main;
 
