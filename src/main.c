@@ -1,19 +1,50 @@
 #include "../include/philo.h"
 
-int main(int ac, char **av)
+int	check_arg_content(char *arg)
 {
-    t_args args;
-    t_philos *philos;
-    pthread_mutex_t *forks;
+	int	i;
 
+	i = 0;
+	while (arg[i] != '\0')
+	{
+		if (arg[i] < '0' || arg[i] > '9')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
-    if (!is_valid_input(ac, av))
-        return (0);
-    init_args(av, &args);
-    
-    philos = malloc(sizeof(t_philos) * args.num_of_philos);
-    forks = malloc(sizeof(pthread_mutex_t) * args.num_of_philos);
-    
-    dinner_init(philos, forks, &args);
-    return (0);
+int	check_valid_args(char **argv)
+{
+	if (ft_atoi(argv[1]) > PHILO_MAX || ft_atoi(argv[1]) <= 0
+		|| check_arg_content(argv[1]) == 1)
+		return (write(2, "Invalid philosophers number\n", 29), 1);
+	if (ft_atoi(argv[2]) <= 0 || check_arg_content(argv[2]) == 1)
+		return (write(2, "Invalid time to die\n", 21), 1);
+	if (ft_atoi(argv[3]) <= 0 || check_arg_content(argv[3]) == 1)
+		return (write(2, "Invalid time to eat\n", 21), 1);
+	if (ft_atoi(argv[4]) <= 0 || check_arg_content(argv[4]) == 1)
+		return (write(2, "Invalid time to sleep\n", 23), 1);
+	if (argv[5] && (ft_atoi(argv[5]) < 0 || check_arg_content(argv[5]) == 1))
+		return (write(2, "Invalid number of times each philosopher must eat\n",
+				51), 1);
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_main		main;
+	t_philo			philos[PHILO_MAX];
+	pthread_mutex_t	forks[PHILO_MAX];
+
+	if (argc != 5 && argc != 6)
+		return (write(2, "Wrong argument count\n", 22), 1);
+	if (check_valid_args(argv) == 1)
+		return (1);
+	init_main(&main, philos);
+	init_forks(forks, ft_atoi(argv[1]));
+	init_philos(philos, &main, forks, argv);
+	thread_create(&main, forks);
+	destory_all(NULL, &main, forks);
+	return (0);
 }

@@ -1,23 +1,27 @@
 NAME = philo
-CC = cc
-SRC = main.c dinner_init.c util/atoi.c \
-		util/strlen.c aux/is_valid_input.c \
-		aux/init_args.c philo/set_forks.c \
-		philo/set_philos.c aux/time.c \
-		philo/destroy.c philo/simulation.c \
-		philo/print_status.c philo/monitor_dies.c
-	
-SRC_PATH = $(addprefix ./src/, $(SRC))
-C_FLGAS = -Wall -Werror -Wextra -pthread
+
+SRC = main.c util/utils.c philo/init.c philo/threads.c philo/monitor.c philo/routine_actions.c
+
+C_FILES = $(addprefix ./src/, $(SRC))
+
+FLAGS = -Wall -Wextra -Werror -pthread
+
 HEADER = ./include/philo.h
+
+#SANITIZER = -fsanitize=thread
+
 
 all: $(NAME)
 
-$(NAME): $(SRC_PATH) $(HEADER)
-	$(CC) $(C_FLAGS) $(SRC_PATH) -o $(NAME)
+$(NAME): $(C_FILES) $(HEADER)
+	cc $(FLAGS) -o $(NAME) $(C_FILES) $(SANITIZER)
 
 clean:
-fclean:
-	rm -rf $(NAME)
+	rm -f $(NAME)
+
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
