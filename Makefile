@@ -8,11 +8,11 @@ SRC = main.c philo/init.c philo/threads.c \
 
 C_FILES = $(addprefix ./src/, $(SRC))
 
-FLAGS = -Wall -Wextra -Werror -pthread
+FLAGS = -Wall -Wextra -Werror -pthread -g
 
 HEADER = ./include/philo.h
 
-#SANITIZER = -fsanitize=thread
+# SANITIZER = -fsanitize=thread
 
 
 all: $(NAME)
