@@ -8,7 +8,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 5 && argc != 6)
 		return (write(2, "Wrong argument count\n", 22), 1);
-	if (check_valid_args(argv) == 1)
+	if (check_args(argv) == 1)
 		return (1);
 	philos = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
 	forks = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
