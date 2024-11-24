@@ -30,7 +30,7 @@ static int	check_if_dead(t_philo *philos)
 	return (0);
 }
 
-static int	check_if_all_ate(t_philo *philos)
+static int	verify_if_all_ate(t_philo *philos)
 {
 	int	i;
 	int	finished_eating;
@@ -63,7 +63,7 @@ void	*monitor(void *pointer)
 
 	philos = (t_philo *)pointer;
 	while (1)
-		if (check_if_dead(philos) == 1 || check_if_all_ate(philos) == 1)
+		if (check_if_dead(philos) == 1 || verify_if_all_ate(philos) == 1)
 			break ;
 	return (pointer);
 }

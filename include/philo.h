@@ -1,27 +1,26 @@
 #ifndef PHILO_H
 # define PHILO_H
-# include <pthread.h>
+
 # include <stdio.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <sys/time.h>
-# include <unistd.h>
-
-# define PHILO_MAX 300
+# include <pthread.h>
 
 typedef struct s_philo
 {
 	pthread_t		thread;
 	int				philo_id;
 	int				is_eat;
+	int				num_of_philos;
+	int				num_times_to_eat;
+	int				*is_dead;
 	int				meals_eaten;
 	size_t			last_meal;
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	size_t			start_time;
-	int				num_of_philos;
-	int				num_times_to_eat;
-	int				*is_dead;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*print_mutex;

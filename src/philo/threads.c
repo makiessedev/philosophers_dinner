@@ -4,7 +4,10 @@ int	dead_loop(t_philo *philo)
 {
 	pthread_mutex_lock(philo->is_dead_mutex);
 	if (*philo->is_dead == 1)
-		return (pthread_mutex_unlock(philo->is_dead_mutex), 1);
+	{
+		pthread_mutex_unlock(philo->is_dead_mutex);
+		return (1);
+	}
 	pthread_mutex_unlock(philo->is_dead_mutex);
 	return (0);
 }
@@ -25,28 +28,28 @@ void	*philo_routine(void *pointer)
 	return (pointer);
 }
 
-int	thread_create(t_main *program, pthread_mutex_t *forks)
+int	thread_create(t_main *main, pthread_mutex_t *forks)
 {
 	pthread_t	observer;
 	int			i;
 
-	if (pthread_create(&observer, NULL, &monitor, program->philos) != 0)
-		destroy_all(program, forks);
+	if (pthread_create(&observer, NULL, &monitor, main->philos) != 0)
+		destroy_all(main, forks);
 	i = 0;
-	while (i < program->philos[0].num_of_philos)
+	while (i < main->philos[0].num_of_philos)
 	{
-		if (pthread_create(&program->philos[i].thread, NULL, &philo_routine,
-				&program->philos[i]) != 0)
-			destroy_all(program, forks);
+		if (pthread_create(&main->philos[i].thread, NULL, &philo_routine,
+				&main->philos[i]) != 0)
+			destroy_all(main, forks);
 		i++;
 	}
 	i = 0;
 	if (pthread_join(observer, NULL) != 0)
-		destroy_all(program, forks);
-	while (i < program->philos[0].num_of_philos)
+		destroy_all(main, forks);
+	while (i < main->philos[0].num_of_philos)
 	{
-		if (pthread_join(program->philos[i].thread, NULL) != 0)
-			destroy_all(program, forks);
+		if (pthread_join(main->philos[i].thread, NULL) != 0)
+			destroy_all(main, forks);
 		i++;
 	}
 	return (0);
